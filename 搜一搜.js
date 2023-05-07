@@ -39,197 +39,141 @@ export class example extends plugin {
             fnc: 'so_help'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#百度=(.*)$',
-            /** 执行方法 */
             fnc: 'so_baidu'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#搜狗=(.*)$',
-            /** 执行方法 */
             fnc: 'so_sg'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#duckduckgo=(.*)$',
-            /** 执行方法 */
             fnc: 'so_duckduckgo'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#必应=(.*)$',
-            /** 执行方法 */
             fnc: 'so_bing'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#google=(.*)$',
-            /** 执行方法 */
             fnc: 'so_google'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#wiki=(.*)$',
-            /** 执行方法 */
             fnc: 'so_wiki'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#ecosia=(.*)$',
-            /** 执行方法 */
             fnc: 'so_ecosia'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#360=(.*)$',
-            /** 执行方法 */
             fnc: 'so_360'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#2345=(.*)$',
-            /** 执行方法 */
             fnc: 'so_2345'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#youtube=(.*)$',
-            /** 执行方法 */
             fnc: 'so_ytb'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#推特找人=(.*)$',
-            /** 执行方法 */
             fnc: 'so_twzr'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#科学打开网页=(.*)$',
-            /** 执行方法 */
             fnc: 'so_fqopenwebui'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#打开网页=(.*)$',
-            /** 执行方法 */
             fnc: 'so_openwebui'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#bilibili=(.*)$',
-            /** 执行方法 */
             fnc: 'so_blbl'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#github=(.*)$',
-            /** 执行方法 */
             fnc: 'so_github'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#动漫资源=(.*)$',
-            /** 执行方法 */
             fnc: 'so_acg'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#ping=(.*)$',
-            /** 执行方法 */
             fnc: 'so_ping'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#webcrawler=(.*)$',
-            /** 执行方法 */
             fnc: 'so_webcrawler'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#aol=(.*)$',
-            /** 执行方法 */
             fnc: 'so_aol'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#ask=(.*)$',
-            /** 执行方法 */
             fnc: 'so_ask'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#yahoo=(.*)$',
-            /** 执行方法 */
             fnc: 'so_yahoo'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#pornhub=(.*)$',
-            /** 执行方法 */
             fnc: 'so_ph'
           },     
           {
-            /** 命令正则匹配 */
             reg: '^#?#pixiv=(.*)$',
-            /** 执行方法 */
             fnc: 'so_pixiv'
           }, 
           {
-            /** 命令正则匹配 */
             reg: '^#?#sankaku=(.*)$',
-            /** 执行方法 */
             fnc: 'so_sankaku'
           },         
           {
-            /** 命令正则匹配 */
             reg: '^#?#亚马逊=(.*)$',
-            /** 执行方法 */
             fnc: 'so_amz'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#niconico=(.*)$',
-            /** 执行方法 */
             fnc: 'so_niconico'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#syosetu=(.*)$',
-            /** 执行方法 */
             fnc: 'so_syosetu'
           },    
           {
-            /** 命令正则匹配 */
             reg: '^#?#dmm=(.*)$',
-            /** 执行方法 */
             fnc: 'so_dmm'
           },
           {
-            /** 命令正则匹配 */
             reg: '^#?#cpu排行(.*)$',
-            /** 执行方法 */
             fnc: 'so_cpuz'
           },   
           {
-            /** 命令正则匹配 */
             reg: '^#?#cpu=(.*)$',
-            /** 执行方法 */
             fnc: 'so_cpu'
           },   
           {
-            /** 命令正则匹配 */
             reg: '^#?#gpu排行',
-            /**""" 执行方法 */
             fnc: 'so_gpuz'
           },   
           {
-            /** 命令正则匹配 */
             reg: '^#?#gpu=(.*)$',
-            /**""" 执行方法 */
             fnc: 'so_gpu'
           },   
+          {
+            reg: '^#?#TMDB=(.*)$',
+            fnc: 'so_tmdb'
+          }, 
+          {
+            reg: '^#?#IMDB=(.*)$',
+            fnc: 'so_imdb'
+          }, 
         ]
       })
     }
@@ -238,7 +182,7 @@ export class example extends plugin {
       /** e.msg 用户的命令消息 */
       logger.info("[用户命令]", e.msg);
       await this.reply(
-        `- 输入【#搜一搜帮助】获得列表\n- 输入【#百度=】百度一下 \n- 例如：【#百度=114514】\n- 支持网页浏览 【#打开网页=输入网址】\n- 支持ping 【#ping=baidu.com】\n- 支持的搜索引擎 百度，必应，google，360，搜狗，推特找人，youtube，duckduckgo，wiki，ecosia, bilibili, github, 动漫资源, webcrawler, aol, ask, yahoo \n- 支持其他 pornhub,pixiv,sankaku，\n- 购物网 亚马逊，dmm（日本）\n- 动漫网 niconico（日本）\n- 小说网站 syosetu（日本）\n- 电脑硬件 cpu=，gpu=,cpu排行，gpu排行`
+        `- 输入【#搜一搜帮助】获得列表\n- 输入【#百度=】百度一下 \n- 例如：【#百度=114514】\n- 支持网页浏览 【#打开网页=输入网址】\n- 支持ping 【#ping=baidu.com】\n- 支持的搜索引擎 百度，必应，google，360，搜狗，推特找人，youtube，duckduckgo，wiki，ecosia, bilibili, github, 动漫资源, webcrawler, aol, ask, yahoo \n- 支持其他 pornhub,pixiv,sankaku，\n- 购物网 亚马逊，dmm（日本）\n- 动漫网 niconico（日本）\n- 小说网站 syosetu（日本）\n- 电脑硬件 cpu=，gpu=,cpu排行，gpu排行\n- 搜影评 TMDB= ，IMDB=`
       );
     }
     
@@ -253,9 +197,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 740, height: 2400 }); //截图大小（页面大小）
-      await page.goto('https://www.google.com/search?q='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
-      //const png = await page.screenshot();
+      await page.goto('https://www.google.com/search?q='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -275,8 +217,7 @@ export class example extends plugin {
           });
           const page = await browser.newPage();
           await page.setViewport({ width: 900, height: 3000 }); //截图大小（页面大小）
-          await page.goto('https://www.bing.com/search?q='+msg[0]);
-          //await new Promise((r) => setTimeout(r, 5000));
+          await page.goto('https://www.bing.com/search?q='+msg[0], {waitUntil: 'networkidle2'});
           const screenshotPath = `screenshot.png`;
           await page.screenshot({ path: screenshotPath });
           await browser.close();
@@ -291,13 +232,10 @@ export class example extends plugin {
       let msg = e.msg.replace("#百度=", "").trim();
       msg = msg.split(" ");
       await e.reply(echo) //提示词    
-      const browser = await puppeteer.launch({
-        /*args: [`--proxy-server=${proxyUrl}`],*/
-      });
       const page = await browser.newPage();
+      const browser = await puppeteer.launch();
       await page.setViewport({ width: 800, height: 2300 }); //截图大小（页面大小）
-      await page.goto('https://www.baidu.com/s?wd='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://www.baidu.com/s?wd='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -311,12 +249,10 @@ export class example extends plugin {
         let msg = e.msg.replace("#360=", "").trim();
         msg = msg.split(" ");
         await e.reply(echo) //提示词 
-        const browser = await puppeteer.launch({
-          /*args: [`--proxy-server=${proxyUrl}`],*/
-        });
         const page = await browser.newPage();
+        const browser = await puppeteer.launch();
         await page.setViewport({ width: 1200, height: 2300 }); //截图大小（页面大小）
-        await page.goto('https://www.so.com/s?q='+msg[0]);
+        await page.goto('https://www.so.com/s?q='+msg[0], {waitUntil: 'networkidle2'});
         await new Promise((r) => setTimeout(r, 5000));
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
@@ -336,7 +272,7 @@ export class example extends plugin {
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 770, height: 2900 }); //截图大小（页面大小）
-        await page.goto('https://www.twitter.com/'+msg[0]);
+        await page.goto('https://www.twitter.com/'+msg[0], {waitUntil: 'networkidle2'});
         await new Promise((r) => setTimeout(r, 5000));
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
@@ -355,14 +291,11 @@ export class example extends plugin {
         const browser = await puppeteer.launch({
           headless: false,
           executablePath: chromeF,
-          args: [`--proxy-server=${proxyUrl}`,
-                '--disable-web-security', // 允许跨域
-              ], 
+          args: ['--disable-web-security'], 
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 800, height: 2400 }); //截图大小（页面大小）
-        await page.goto('https://www.youtube.com/results?search_query='+msg[0]);
-        //await new Promise((r) => setTimeout(r, 5000));
+        await page.goto('https://www.youtube.com/results?search_query='+msg[0], {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -379,14 +312,11 @@ export class example extends plugin {
         const browser = await puppeteer.launch({
           headless: false,
           executablePath: chromeF,
-          args: [`--proxy-server=${proxyUrl}`,
-                '--disable-web-security', // 允许跨域
-              ], 
+          args: ['--disable-web-security'], 
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 2300 }); //截图大小（页面大小）
-        await page.goto('https://www.sogou.com/web?query='+msg[0]);
-        //await new Promise((r) => setTimeout(r, 5000));
+        await page.goto('https://www.sogou.com/web?query='+msg[0], {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -403,14 +333,11 @@ export class example extends plugin {
         const browser = await puppeteer.launch({
           headless: false,
           executablePath: chromeF,
-          args: [`--proxy-server=${proxyUrl}`,
-                //'--disable-web-security', // 允许跨域
-              ], 
+          args: [`--proxy-server=${proxyUrl}`], 
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 2400 }); //截图大小（页面大小）
-        await page.goto('https://duckduckgo.com/?q='+msg[0]);
-        //await new Promise((r) => setTimeout(r, 5000));
+        await page.goto('https://duckduckgo.com/?q='+msg[0], {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -425,16 +352,11 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词      
         const browser = await puppeteer.launch({
-          //headless: false,
-          //executablePath: chromeF,
-          args: [`--proxy-server=${proxyUrl}`,
-                //'--disable-web-security', // 允许跨域
-              ], 
+          args: [`--proxy-server=${proxyUrl}`], 
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 800, height: 1300 }); //截图大小（页面大小）
-        await page.goto('https://zh.wikipedia.org/wiki/'+msg[0]);
-        //await new Promise((r) => setTimeout(r, 5000));
+        await page.goto('https://zh.wikipedia.org/wiki/'+msg[0], {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -451,14 +373,10 @@ export class example extends plugin {
       const browser = await puppeteer.launch({
         headless: false,
         executablePath: chromeF,
-        args: [//`--proxy-server=${proxyUrl}`,
-              //'--disable-web-security', // 允许跨域
-            ], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://www.ecosia.org/search?q='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://www.ecosia.org/search?q='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -481,8 +399,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto(''+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto(''+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -503,7 +420,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto(''+msg[0]);
+      await page.goto(''+msg[0], {waitUntil: 'networkidle2'});
       await new Promise((r) => setTimeout(r, 5000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
@@ -525,8 +442,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://search.bilibili.com/all?keyword='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://search.bilibili.com/all?keyword='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -541,16 +457,13 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词    
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`,
               '--disable-web-security', // 允许跨域
             ], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://github.com/search?q='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://github.com/search?q='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -565,14 +478,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://acg.rip/?term='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://acg.rip/?term='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -586,13 +496,11 @@ export class example extends plugin {
     msg = msg.split(" ");
     await e.reply(`ping中....请等待30秒`)
     const browser = await puppeteer.launch({
-      //headless: false,
-      //executablePath: chromeF,
       args: [`--proxy-server=${proxyUrl}`], 
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1380, height: 4200 }); //截图大小（页面大小）
-    await page.goto('https://www.ping.cn/http/'+msg[0]);
+    await page.goto('https://www.ping.cn/http/'+msg[0], {waitUntil: 'networkidle2'});
     await new Promise((r) => setTimeout(r, 33000));
     const screenshotPath = `screenshot.png`;
     await page.screenshot({ path: screenshotPath });
@@ -608,14 +516,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1399 }); //截图大小（页面大小）
-      await page.goto('https://www.webcrawler.com/serp?q='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://www.webcrawler.com/serp?q='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -630,14 +535,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://search.aol.com/aol/search;_ylt=Awr49uVf6lVkxqUXR7dpCWVH;_ylc=X1MDMTE5NzgwMzg4MQRfcgMyBGZyA2NvbXNlYXJjaARncHJpZANlNFlSdHIzY1JiZWppNHFpOEVnUG1BBG5fcnNsdAMwBG5fc3VnZwMwBG9yaWdpbgNzZWFyY2guYW9sLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAzAEcXN0cmwDNARxdWVyeQMlRTYlODglOTElRTclOUElODQlRTQlQjglOTYlRTclOTUlOEMEdF9zdG1wAzE2ODMzNTIxNjY-?q='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://search.aol.com/aol/search;_ylt=Awr49uVf6lVkxqUXR7dpCWVH;_ylc=X1MDMTE5NzgwMzg4MQRfcgMyBGZyA2NvbXNlYXJjaARncHJpZANlNFlSdHIzY1JiZWppNHFpOEVnUG1BBG5fcnNsdAMwBG5fc3VnZwMwBG9yaWdpbgNzZWFyY2guYW9sLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAzAEcXN0cmwDNARxdWVyeQMlRTYlODglOTElRTclOUElODQlRTQlQjglOTYlRTclOTUlOEMEdF9zdG1wAzE2ODMzNTIxNjY-?q='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -652,14 +554,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://www.ask.com/web?q='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://www.ask.com/web?q='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -674,14 +573,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://search.yahoo.com/search;_ylt=Awr.0fVK6FVkH3oXNmZXNyoA;_ylc=X1MDMjc2NjY3OQRfcgMyBGZyA3NmcARmcjIDc2ItdG9wBGdwcmlkA2dWZGpFRTAxU0YyanFhaFhacUt1UEEEbl9yc2x0AzAEbl9zdWdnAzIEb3JpZ2luA3NlYXJjaC55YWhvby5jb20EcG9zAzAEcHFzdHIDBHBxc3RybAMwBHFzdHJsAzMEcXVlcnkDJUU4JTk0JUExJUU1JUJFJTkwJUU1JTlEJUE0BHRfc3RtcAMxNjgzMzUxNjQw?p='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://search.yahoo.com/search;_ylt=Awr.0fVK6FVkH3oXNmZXNyoA;_ylc=X1MDMjc2NjY3OQRfcgMyBGZyA3NmcARmcjIDc2ItdG9wBGdwcmlkA2dWZGpFRTAxU0YyanFhaFhacUt1UEEEbl9yc2x0AzAEbl9zdWdnAzIEb3JpZ2luA3NlYXJjaC55YWhvby5jb20EcG9zAzAEcHFzdHIDBHBxc3RybAMwBHFzdHJsAzMEcXVlcnkDJUU4JTk0JUExJUU1JUJFJTkwJUU1JTlEJUE0BHRfc3RtcAMxNjgzMzUxNjQw?p='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -696,14 +592,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://cn.pornhub.com/video/search?search='+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://cn.pornhub.com/video/search?search='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -718,14 +611,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 3599 }); //截图大小（页面大小）
-      await page.goto('https://www.pixiv.net/tags/'+msg[0]);
-      //await new Promise((r) => setTimeout(r, 5000));
+      await page.goto('https://www.pixiv.net/tags/'+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -769,7 +659,6 @@ export class example extends plugin {
       const page = await browser.newPage();
       await page.setViewport({ width: 1260, height: 2499 }); //截图大小（页面大小）
       await page.goto('https://www.amazon.cn/s?k='+msg[0], {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 20000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -791,7 +680,6 @@ export class example extends plugin {
       const page = await browser.newPage();
       await page.setViewport({ width: 1045, height: 2499 }); //截图大小（页面大小）
       await page.goto('https://www.nicovideo.jp/search/'+msg[0], {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -806,14 +694,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1065, height: 2499 }); //截图大小（页面大小）
       await page.goto('https://yomou.syosetu.com/search.php?word='+msg[0], {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -828,14 +713,11 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1065, height: 2499 }); //截图大小（页面大小）
       await page.goto('https://www.dmm.com/search/=/searchstr='+msg[0], {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -857,7 +739,6 @@ export class example extends plugin {
       const page = await browser.newPage();
       await page.setViewport({ width: 1275, height: 5999 }); //截图大小（页面大小）
       await page.goto('https://valid.x86.fr/bench/1', {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -871,15 +752,10 @@ export class example extends plugin {
       let msg = e.msg.replace("#cpu=","").trim();
       msg = msg.split(" ");
         await e.reply(echo) //提示词
-      const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
-        //args: [`--proxy-server=${proxyUrl}`], 
-      });
+        const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.setViewport({ width: 1275, height: 3465 }); //截图大小（页面大小）
       await page.goto('https://browser.geekbench.com/search?utf8=%E2%9C%93&q='+msg[0]+" "+msg[1], {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -896,12 +772,10 @@ export class example extends plugin {
       const browser = await puppeteer.launch({
         headless: false,
         executablePath: chromeF,
-        //args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1275, height: 4499 }); //截图大小（页面大小）
       await page.goto('https://technical.city/zh/video/rating', {waitUntil: 'networkidle2'});
-      //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -918,11 +792,51 @@ export class example extends plugin {
       const browser = await puppeteer.launch({
         headless: false,
         executablePath: chromeF,
-        //args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1275, height: 1109 }); //截图大小（页面大小）
       await page.goto('https://technical.city/zh/search?q='+msg , {waitUntil: 'networkidle2'});
+      const screenshotPath = `screenshot.png`;
+      await page.screenshot({ path: screenshotPath });
+      await browser.close();
+      
+      const imageSegment = segment.image(`file:///${screenshotPath}`);
+      await e.reply(imageSegment)
+    }
+       /** e.msg 用户的命令消息 */
+       async so_tmdb(e) {
+        logger.info("[用户命令]", e.msg);
+      let msg = e.msg.replace("#TMDB=","").trim();
+      msg = msg.split(" ");
+        await e.reply(echo) //提示词
+      const browser = await puppeteer.launch({
+        headless: false,
+        executablePath: chromeF,
+      });
+      const page = await browser.newPage();
+      await page.setViewport({ width: 1275, height: 1109 }); //截图大小（页面大小）
+      await page.goto('https://www.themoviedb.org/search?query='+msg , {waitUntil: 'networkidle2'});
+      const screenshotPath = `screenshot.png`;
+      await page.screenshot({ path: screenshotPath });
+      await browser.close();
+      
+      const imageSegment = segment.image(`file:///${screenshotPath}`);
+      await e.reply(imageSegment)
+    }
+       /** e.msg 用户的命令消息 */
+       async so_imdb(e) {
+        logger.info("[用户命令]", e.msg);
+      let msg = e.msg.replace("#IMDB=","").trim();
+      msg = msg.split(" ");
+        await e.reply(echo) //提示词
+      const browser = await puppeteer.launch({
+        headless: false,
+        executablePath: chromeF,
+        //args: [`--proxy-server=${proxyUrl}`], 
+      });
+      const page = await browser.newPage();
+      await page.setViewport({ width: 1275, height: 1109 }); //截图大小（页面大小）
+      await page.goto('https://www.imdb.com/find/?q='+msg , {waitUntil: 'networkidle2'});
       //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
@@ -931,6 +845,5 @@ export class example extends plugin {
       const imageSegment = segment.image(`file:///${screenshotPath}`);
       await e.reply(imageSegment)
     }
-
     //💩山堆屎, 
   }
