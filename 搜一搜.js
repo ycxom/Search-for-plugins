@@ -850,12 +850,12 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        //headless: false,
-        //executablePath: chromeF,
+        headless: false,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
-      await page.setViewport({ width: 1275, height: 4499 }); //截图大小（页面大小）
+      await page.setViewport({ width: 1275, height: 5999 }); //截图大小（页面大小）
       await page.goto('https://valid.x86.fr/bench/1', {waitUntil: 'networkidle2'});
       //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
