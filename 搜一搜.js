@@ -13,9 +13,11 @@ const proxyChain = import('proxy-chain');
 //代理设置
 const proxyUrl = "http://127.0.0.1:7890"
 //chrome地址，edge也可以
-const chromeF = "D:/chrome/chrome.exe"
+const chromeF = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 //搜索提示词，个别网站访问较慢可以适当修改提示增加提示时间
 const echo = `搜索中...`
+//关闭无头模式，即真打开浏览器,(后台就会有个浏览器闪现出来),linux有桌面板可以打开, 无桌面版建议关闭
+const noie = false  //现在为关闭无头模式
 
 
 
@@ -193,13 +195,15 @@ export class example extends plugin {
       msg = msg.split(" ");
       await e.reply(echo) //提示词    
       const browser = await puppeteer.launch({
-        args: [`--proxy-server=${proxyUrl}`],
+        headless: noie,          //关闭无头模式
+        executablePath: chromeF,  //自定义浏览器位置
+        args: [`--proxy-server=${proxyUrl}`],  //代理设置
       });
-      const page = await browser.newPage();
+      const page = await browser.newPage();    //启动一个新的页面
       await page.setViewport({ width: 740, height: 2400 }); //截图大小（页面大小）
-      await page.goto('https://www.google.com/search?q='+msg[0], {waitUntil: 'networkidle2'});
-      const screenshotPath = `screenshot.png`;
-      await page.screenshot({ path: screenshotPath });
+      await page.goto('https://www.google.com/search?q='+msg[0], {waitUntil: 'networkidle2'});   //打开的网址，后面一段是等待页面加载完成
+      const screenshotPath = `screenshot.png`;   //保存的文件名
+      await page.screenshot({ path: screenshotPath });  
       await browser.close();
   
       const imageSegment = segment.image(`file:///${screenshotPath}`);
@@ -213,6 +217,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词        
           const browser = await puppeteer.launch({
+            headless: noie,
+            executablePath: chromeF,
             args: [`--proxy-server=${proxyUrl}`],
           });
           const page = await browser.newPage();
@@ -233,7 +239,10 @@ export class example extends plugin {
       msg = msg.split(" ");
       await e.reply(echo) //提示词    
       const page = await browser.newPage();
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
+      });
       await page.setViewport({ width: 800, height: 2300 }); //截图大小（页面大小）
       await page.goto('https://www.baidu.com/s?wd='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
@@ -250,7 +259,10 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词 
         const page = await browser.newPage();
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+          headless: noie,
+          executablePath: chromeF,
+        });
         await page.setViewport({ width: 1200, height: 2300 }); //截图大小（页面大小）
         await page.goto('https://www.so.com/s?q='+msg[0], {waitUntil: 'networkidle2'});
         await new Promise((r) => setTimeout(r, 5000));
@@ -268,6 +280,8 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词      
         const browser = await puppeteer.launch({
+          headless: noie,
+          executablePath: chromeF,
           args: [`--proxy-server=${proxyUrl}`],
         });
         const page = await browser.newPage();
@@ -289,7 +303,7 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词      
         const browser = await puppeteer.launch({
-          headless: false,
+          headless: noie,
           executablePath: chromeF,
           args: ['--disable-web-security'], 
         });
@@ -310,7 +324,7 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词      
         const browser = await puppeteer.launch({
-          headless: false,
+          headless: noie,
           executablePath: chromeF,
           args: ['--disable-web-security'], 
         });
@@ -331,7 +345,7 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词      
         const browser = await puppeteer.launch({
-          headless: false,
+          headless: noie,
           executablePath: chromeF,
           args: [`--proxy-server=${proxyUrl}`], 
         });
@@ -352,6 +366,8 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(echo) //提示词      
         const browser = await puppeteer.launch({
+          headless: noie,
+          executablePath: chromeF,
           args: [`--proxy-server=${proxyUrl}`], 
         });
         const page = await browser.newPage();
@@ -371,7 +387,7 @@ export class example extends plugin {
       msg = msg.split(" ");
       await e.reply(echo) //提示词    
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
       });
       const page = await browser.newPage();
@@ -391,7 +407,7 @@ export class example extends plugin {
       msg = msg.split(" ");
       await e.reply(`打开中...请骚等`) //提示词    
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`,
               '--disable-web-security', // 允许跨域
@@ -414,7 +430,7 @@ export class example extends plugin {
         msg = msg.split(" ");
         await e.reply(`打开中...请骚等`) //提示词    
         const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: ['--proxy-bypass-list=*'], 
       });
@@ -436,7 +452,7 @@ export class example extends plugin {
       msg = msg.split(" ");
       await e.reply(echo) //提示词    
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: ['--proxy-bypass-list=*'], 
       });
@@ -457,6 +473,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词    
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`,
               '--disable-web-security', // 允许跨域
             ], 
@@ -478,6 +496,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -496,11 +516,13 @@ export class example extends plugin {
     msg = msg.split(" ");
     await e.reply(`ping中....请等待30秒`)
     const browser = await puppeteer.launch({
+      headless: noie,
+      executablePath: chromeF,
       args: [`--proxy-server=${proxyUrl}`], 
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1380, height: 4200 }); //截图大小（页面大小）
-    await page.goto('https://www.ping.cn/http/'+msg[0], {waitUntil: 'networkidle2'});
+    await page.goto('https://www.ping.cn/http/'+msg[0]);
     await new Promise((r) => setTimeout(r, 33000));
     const screenshotPath = `screenshot.png`;
     await page.screenshot({ path: screenshotPath });
@@ -516,6 +538,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -535,6 +559,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -554,6 +580,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -573,6 +601,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -592,6 +622,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -611,6 +643,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -630,7 +664,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo +'请烧等30秒') //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
@@ -652,7 +686,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
@@ -673,7 +707,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
@@ -694,6 +728,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -713,6 +749,8 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
@@ -732,7 +770,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         args: [`--proxy-server=${proxyUrl}`], 
       });
@@ -752,7 +790,10 @@ export class example extends plugin {
       let msg = e.msg.replace("#cpu=","").trim();
       msg = msg.split(" ");
         await e.reply(echo) //提示词
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+          headless: noie,
+          executablePath: chromeF,
+        });
       const page = await browser.newPage();
       await page.setViewport({ width: 1275, height: 3465 }); //截图大小（页面大小）
       await page.goto('https://browser.geekbench.com/search?utf8=%E2%9C%93&q='+msg[0]+" "+msg[1], {waitUntil: 'networkidle2'});
@@ -770,7 +811,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
       });
       const page = await browser.newPage();
@@ -790,7 +831,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
       });
       const page = await browser.newPage();
@@ -810,7 +851,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
       });
       const page = await browser.newPage();
@@ -830,7 +871,7 @@ export class example extends plugin {
       msg = msg.split(" ");
         await e.reply(echo) //提示词
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: noie,
         executablePath: chromeF,
         //args: [`--proxy-server=${proxyUrl}`], 
       });
