@@ -877,7 +877,7 @@ export class example extends plugin {
         //args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
-      await page.setViewport({ width: 1275, height: 4499 }); //截图大小（页面大小）
+      await page.setViewport({ width: 1275, height: 3465 }); //截图大小（页面大小）
       await page.goto('https://browser.geekbench.com/search?utf8=%E2%9C%93&q='+msg[0]+" "+msg[1], {waitUntil: 'networkidle2'});
       //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
