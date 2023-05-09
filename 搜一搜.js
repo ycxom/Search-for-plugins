@@ -32,13 +32,17 @@ export class example extends plugin {
         /** https://oicqjs.github.io/oicq/#events */
         event: 'message',
         /** 优先级，数字越小等级越高 */
-        priority: 5000,
+        priority: 50,
         rule: [
           {
             /** 命令正则匹配 */
             reg: '^#搜一搜帮助$',
             /** 执行方法 */
             fnc: 'so_help'
+          },
+          {
+            reg: '^#?#baidu=(.*)$',
+            fnc: 'so_baidu'
           },
           {
             reg: '^#?#百度=(.*)$',
@@ -175,7 +179,19 @@ export class example extends plugin {
           {
             reg: '^#?#IMDB=(.*)$',
             fnc: 'so_imdb'
-          }, 
+          },
+          {
+            reg: '^#?#查ip=$',
+            fnc: 'so_ckip'
+          },  
+          {
+            reg: '^#?#查ip=(.*)$',
+            fnc: 'so_cip'
+          },  
+          {
+            reg: '^#?#wallhere=(.*)$',
+            fnc: 'so_wallhere'
+          },  
         ]
       })
     }
@@ -183,9 +199,26 @@ export class example extends plugin {
     async so_help(e) {
       /** e.msg 用户的命令消息 */
       logger.info("[用户命令]", e.msg);
-      await this.reply(
-        `- 输入【#搜一搜帮助】获得列表\n- 输入【#百度=】百度一下 \n- 例如：【#百度=114514】\n- 支持网页浏览 【#打开网页=输入网址】\n- 支持ping 【#ping=baidu.com】\n- 支持的搜索引擎 百度，必应，google，360，搜狗，推特找人，youtube，duckduckgo，wiki，ecosia, bilibili, github, 动漫资源, webcrawler, aol, ask, yahoo \n- 支持其他 pornhub,pixiv,sankaku，\n- 购物网 亚马逊，dmm（日本）\n- 动漫网 niconico（日本）\n- 小说网站 syosetu（日本）\n- 电脑硬件 cpu=，gpu=,cpu排行，gpu排行\n- 搜影评 TMDB= ，IMDB=`
-      );
+      /*await this.reply(
+        `- 输入【#搜一搜帮助】获得列表\n- 输入【#百度=】百度一下 
+        \n- 例如：【#百度=114514】\n- 支持网页浏览 【#打开网页=输入网址】
+        \n- 支持ping 【#ping=baidu.com】，查ip= ，
+        \n- 支持的搜索引擎 百度，必应，google，360，搜狗，推特找人，youtube，duckduckgo，wiki，ecosia, bilibili, github, 动漫资源, webcrawler, aol, ask, yahoo 
+        \n- 支持其他 pornhub,pixiv,sankaku，wallhere
+        \n- 购物网 亚马逊，dmm（日本）
+        \n- 动漫网 niconico（日本）
+        \n- 小说网站 syosetu（日本）
+        \n- 电脑硬件 cpu=，gpu=,cpu排行，gpu排行
+        \n- 搜影评 TMDB= ，IMDB=`
+      );*/
+      const helppng = `syshelp.png`;   //图片地址
+      const imagehelp = segment.image(`file:///${helppng}`);
+      await e.reply(imagehelp)
+    }
+        /** e.msg 用户的命令消息 */
+        async so_google(e) {
+    
+    
     }
     
     /** e.msg 用户的命令消息 */
@@ -193,7 +226,7 @@ export class example extends plugin {
       logger.info("[用户命令]", e.msg);
       let msg = e.msg.replace("#google=", "").trim();
       msg = msg.split(" ");
-      await e.reply(echo) //提示词    
+      await e.reply(echo/*+`你所搜索的内容的直链:https://www.google.com/search?q=`+msg*/) //提示词    
       const browser = await puppeteer.launch({
         headless: noie,          //关闭无头模式
         executablePath: chromeF,  //自定义浏览器位置
@@ -201,7 +234,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();    //启动一个新的页面
       await page.setViewport({ width: 740, height: 2400 }); //截图大小（页面大小）
-      await page.goto('https://www.google.com/search?q='+msg[0], {waitUntil: 'networkidle2'});   //打开的网址，后面一段是等待页面加载完成
+      await page.goto('https://www.google.com/search?q='+msg, {waitUntil: 'networkidle2'});   //打开的网址，后面一段是等待页面加载完成
       const screenshotPath = `screenshot.png`;   //保存的文件名
       await page.screenshot({ path: screenshotPath });  
       await browser.close();
@@ -223,7 +256,7 @@ export class example extends plugin {
           });
           const page = await browser.newPage();
           await page.setViewport({ width: 900, height: 3000 }); //截图大小（页面大小）
-          await page.goto('https://www.bing.com/search?q='+msg[0], {waitUntil: 'networkidle2'});
+          await page.goto('https://www.bing.com/search?q='+msg, {waitUntil: 'networkidle2'});
           const screenshotPath = `screenshot.png`;
           await page.screenshot({ path: screenshotPath });
           await browser.close();
@@ -238,11 +271,11 @@ export class example extends plugin {
       let msg = e.msg.replace("#百度=", "").trim();
       msg = msg.split(" ");
       await e.reply(echo) //提示词    
-      const page = await browser.newPage();
       const browser = await puppeteer.launch({
         headless: noie,
         executablePath: chromeF,
       });
+      const page = await browser.newPage();
       await page.setViewport({ width: 800, height: 2300 }); //截图大小（页面大小）
       await page.goto('https://www.baidu.com/s?wd='+msg[0], {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
@@ -264,7 +297,7 @@ export class example extends plugin {
           executablePath: chromeF,
         });
         await page.setViewport({ width: 1200, height: 2300 }); //截图大小（页面大小）
-        await page.goto('https://www.so.com/s?q='+msg[0], {waitUntil: 'networkidle2'});
+        await page.goto('https://www.so.com/s?q='+msg, {waitUntil: 'networkidle2'});
         await new Promise((r) => setTimeout(r, 5000));
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
@@ -286,7 +319,7 @@ export class example extends plugin {
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 770, height: 2900 }); //截图大小（页面大小）
-        await page.goto('https://www.twitter.com/'+msg[0], {waitUntil: 'networkidle2'});
+        await page.goto('https://www.twitter.com/'+msg, {waitUntil: 'networkidle2'});
         await new Promise((r) => setTimeout(r, 5000));
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
@@ -309,7 +342,7 @@ export class example extends plugin {
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 800, height: 2400 }); //截图大小（页面大小）
-        await page.goto('https://www.youtube.com/results?search_query='+msg[0], {waitUntil: 'networkidle2'});
+        await page.goto('https://www.youtube.com/results?search_query='+msg, {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -330,7 +363,7 @@ export class example extends plugin {
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 2300 }); //截图大小（页面大小）
-        await page.goto('https://www.sogou.com/web?query='+msg[0], {waitUntil: 'networkidle2'});
+        await page.goto('https://www.sogou.com/web?query='+msg, {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -351,7 +384,7 @@ export class example extends plugin {
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 1200, height: 2400 }); //截图大小（页面大小）
-        await page.goto('https://duckduckgo.com/?q='+msg[0], {waitUntil: 'networkidle2'});
+        await page.goto('https://duckduckgo.com/?q='+msg, {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -372,7 +405,7 @@ export class example extends plugin {
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 800, height: 1300 }); //截图大小（页面大小）
-        await page.goto('https://zh.wikipedia.org/wiki/'+msg[0], {waitUntil: 'networkidle2'});
+        await page.goto('https://zh.wikipedia.org/wiki/'+msg, {waitUntil: 'networkidle2'});
         const screenshotPath = `screenshot.png`;
         await page.screenshot({ path: screenshotPath });
         await browser.close();
@@ -392,7 +425,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://www.ecosia.org/search?q='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.ecosia.org/search?q='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -415,7 +448,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto(''+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto(''+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -436,7 +469,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto(''+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto(''+msg, {waitUntil: 'networkidle2'});
       await new Promise((r) => setTimeout(r, 5000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
@@ -458,7 +491,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://search.bilibili.com/all?keyword='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://search.bilibili.com/all?keyword='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -481,7 +514,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://github.com/search?q='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://github.com/search?q='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -502,7 +535,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://acg.rip/?term='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://acg.rip/?term='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -522,7 +555,7 @@ export class example extends plugin {
     });
     const page = await browser.newPage();
     await page.setViewport({ width: 1380, height: 4200 }); //截图大小（页面大小）
-    await page.goto('https://www.ping.cn/http/'+msg[0]);
+    await page.goto('https://www.ping.cn/http/'+msg);
     await new Promise((r) => setTimeout(r, 33000));
     const screenshotPath = `screenshot.png`;
     await page.screenshot({ path: screenshotPath });
@@ -544,7 +577,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1200, height: 1399 }); //截图大小（页面大小）
-      await page.goto('https://www.webcrawler.com/serp?q='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.webcrawler.com/serp?q='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -565,7 +598,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://search.aol.com/aol/search;_ylt=Awr49uVf6lVkxqUXR7dpCWVH;_ylc=X1MDMTE5NzgwMzg4MQRfcgMyBGZyA2NvbXNlYXJjaARncHJpZANlNFlSdHIzY1JiZWppNHFpOEVnUG1BBG5fcnNsdAMwBG5fc3VnZwMwBG9yaWdpbgNzZWFyY2guYW9sLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAzAEcXN0cmwDNARxdWVyeQMlRTYlODglOTElRTclOUElODQlRTQlQjglOTYlRTclOTUlOEMEdF9zdG1wAzE2ODMzNTIxNjY-?q='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://search.aol.com/aol/search;_ylt=Awr49uVf6lVkxqUXR7dpCWVH;_ylc=X1MDMTE5NzgwMzg4MQRfcgMyBGZyA2NvbXNlYXJjaARncHJpZANlNFlSdHIzY1JiZWppNHFpOEVnUG1BBG5fcnNsdAMwBG5fc3VnZwMwBG9yaWdpbgNzZWFyY2guYW9sLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAzAEcXN0cmwDNARxdWVyeQMlRTYlODglOTElRTclOUElODQlRTQlQjglOTYlRTclOTUlOEMEdF9zdG1wAzE2ODMzNTIxNjY-?q='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -586,7 +619,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://www.ask.com/web?q='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.ask.com/web?q='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -607,7 +640,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://search.yahoo.com/search;_ylt=Awr.0fVK6FVkH3oXNmZXNyoA;_ylc=X1MDMjc2NjY3OQRfcgMyBGZyA3NmcARmcjIDc2ItdG9wBGdwcmlkA2dWZGpFRTAxU0YyanFhaFhacUt1UEEEbl9yc2x0AzAEbl9zdWdnAzIEb3JpZ2luA3NlYXJjaC55YWhvby5jb20EcG9zAzAEcHFzdHIDBHBxc3RybAMwBHFzdHJsAzMEcXVlcnkDJUU4JTk0JUExJUU1JUJFJTkwJUU1JTlEJUE0BHRfc3RtcAMxNjgzMzUxNjQw?p='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://search.yahoo.com/search;_ylt=Awr.0fVK6FVkH3oXNmZXNyoA;_ylc=X1MDMjc2NjY3OQRfcgMyBGZyA3NmcARmcjIDc2ItdG9wBGdwcmlkA2dWZGpFRTAxU0YyanFhaFhacUt1UEEEbl9yc2x0AzAEbl9zdWdnAzIEb3JpZ2luA3NlYXJjaC55YWhvby5jb20EcG9zAzAEcHFzdHIDBHBxc3RybAMwBHFzdHJsAzMEcXVlcnkDJUU4JTk0JUExJUU1JUJFJTkwJUU1JTlEJUE0BHRfc3RtcAMxNjgzMzUxNjQw?p='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -628,7 +661,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 1599 }); //截图大小（页面大小）
-      await page.goto('https://cn.pornhub.com/video/search?search='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://cn.pornhub.com/video/search?search='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -649,7 +682,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1290, height: 3599 }); //截图大小（页面大小）
-      await page.goto('https://www.pixiv.net/tags/'+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.pixiv.net/tags/'+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -670,7 +703,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1730, height: 1499 }); //截图大小（页面大小）
-      await page.goto('https://sankaku.app/zh-CN?tags='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://sankaku.app/zh-CN?tags='+msg, {waitUntil: 'networkidle2'});
       await new Promise((r) => setTimeout(r, 20000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
@@ -692,7 +725,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1260, height: 2499 }); //截图大小（页面大小）
-      await page.goto('https://www.amazon.cn/s?k='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.amazon.cn/s?k='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -713,7 +746,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1045, height: 2499 }); //截图大小（页面大小）
-      await page.goto('https://www.nicovideo.jp/search/'+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.nicovideo.jp/search/'+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -734,7 +767,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1065, height: 2499 }); //截图大小（页面大小）
-      await page.goto('https://yomou.syosetu.com/search.php?word='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://yomou.syosetu.com/search.php?word='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -755,7 +788,7 @@ export class example extends plugin {
       });
       const page = await browser.newPage();
       await page.setViewport({ width: 1065, height: 2499 }); //截图大小（页面大小）
-      await page.goto('https://www.dmm.com/search/=/searchstr='+msg[0], {waitUntil: 'networkidle2'});
+      await page.goto('https://www.dmm.com/search/=/searchstr='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -796,7 +829,7 @@ export class example extends plugin {
         });
       const page = await browser.newPage();
       await page.setViewport({ width: 1275, height: 3465 }); //截图大小（页面大小）
-      await page.goto('https://browser.geekbench.com/search?utf8=%E2%9C%93&q='+msg[0]+" "+msg[1], {waitUntil: 'networkidle2'});
+      await page.goto('https://browser.geekbench.com/search?utf8=%E2%9C%93&q='+msg, {waitUntil: 'networkidle2'});
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -886,5 +919,54 @@ export class example extends plugin {
       const imageSegment = segment.image(`file:///${screenshotPath}`);
       await e.reply(imageSegment)
     }
-    //💩山堆屎, 
+       /** e.msg 用户的命令消息 */
+       async so_cip(e) {
+        logger.info("[用户命令]", e.msg);
+      let msg = e.msg.replace("#查ip=","").trim();
+      msg = msg.split(" ");
+        await e.reply(echo) //提示词
+      const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
+        //args: [`--proxy-server=${proxyUrl}`], 
+      });
+      const page = await browser.newPage();
+      await page.setViewport({ width: 840, height: 1309 }); //截图大小（页面大小）
+      await page.goto('https://ip.hao86.com/'+msg[0] , {waitUntil: 'networkidle2'});
+      //await new Promise((r) => setTimeout(r, 50000));
+      const screenshotPath = `screenshot.png`;
+      await page.screenshot({ path: screenshotPath });
+      await browser.close();
+      
+      const imageSegment = segment.image(`file:///${screenshotPath}`);
+      await e.reply(imageSegment)
+    }
+    /** e.msg 用户的命令消息 */
+    async so_ckip(e) {
+      await e.reply(`请输入正确的命令，如：#查ip=www.baidu.com`)
+       
+    }
+       /** e.msg 用户的命令消息 */
+       async so_wallhere(e) {
+        logger.info("[用户命令]", e.msg);
+      let msg = e.msg.replace("#wallhere=","").trim();
+      msg = msg.split(" ");
+        await e.reply(echo) //提示词
+      const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
+        //args: [`--proxy-server=${proxyUrl}`], 
+      });
+      const page = await browser.newPage();
+      await page.setViewport({ width: 1080, height: 3009 }); //截图大小（页面大小）
+      await page.goto('https://wallhere.com/zh/wallpapers?q='+msg , {waitUntil: 'networkidle2'});
+      //await new Promise((r) => setTimeout(r, 50000));
+      const screenshotPath = `screenshot.png`;
+      await page.screenshot({ path: screenshotPath });
+      await browser.close();
+      
+      const imageSegment = segment.image(`file:///${screenshotPath}`);
+      await e.reply(imageSegment)
+    }
+    //💩山堆屎, wallhere
   }
