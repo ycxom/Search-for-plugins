@@ -7,6 +7,7 @@ pnpm i puppeteer -w
 ```bash:numbers
 pnpm i proxy-chain -w
 ```
+- 将`syshelp.png`文件放在yunzai根目录
 ## **打开插件配置代理信息，浏览器地址**
 ```sh
 //代理设置
