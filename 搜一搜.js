@@ -41,6 +41,10 @@ export class example extends plugin {
             fnc: 'so_help'
           },
           {
+            reg: '^#其他网站$',
+            fnc: 'so_help2'
+          },
+          {
             reg: '^#?#baidu=(.*)$',
             fnc: 'so_baidu'
           },
@@ -192,6 +196,10 @@ export class example extends plugin {
             reg: '^#?#wallhere=(.*)$',
             fnc: 'so_wallhere'
           },  
+          {
+            reg: '^#?#天眼查=(.*)$',
+            fnc: 'so_tyc'
+          },  
         ]
       })
     }
@@ -215,9 +223,12 @@ export class example extends plugin {
       const imagehelp = segment.image(`file:///${helppng}`);
       await e.reply(imagehelp)
     }
-        /** e.msg 用户的命令消息 */
-        async so_google(e) {
-    
+    async so_help2(e) {
+      /** e.msg 用户的命令消息 */
+      logger.info("[用户命令]", e.msg);
+      await this.reply(
+        `--其他网站--\n- 天眼查= ,查ip= ,ping= ,#打开网页= ,#科学打开网页=\n- 电脑硬件 cpu=，gpu=,cpu排行，gpu排行`
+      );
     
     }
     
@@ -702,9 +713,9 @@ export class example extends plugin {
         args: [`--proxy-server=${proxyUrl}`], 
       });
       const page = await browser.newPage();
-      await page.setViewport({ width: 1730, height: 1499 }); //截图大小（页面大小）
+      await page.setViewport({ width: 1500, height: 1699 }); //截图大小（页面大小）
       await page.goto('https://sankaku.app/zh-CN?tags='+msg, {waitUntil: 'networkidle2'});
-      await new Promise((r) => setTimeout(r, 20000));
+      await new Promise((r) => setTimeout(r, 23000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
       await browser.close();
@@ -960,6 +971,28 @@ export class example extends plugin {
       const page = await browser.newPage();
       await page.setViewport({ width: 1080, height: 3009 }); //截图大小（页面大小）
       await page.goto('https://wallhere.com/zh/wallpapers?q='+msg , {waitUntil: 'networkidle2'});
+      //await new Promise((r) => setTimeout(r, 50000));
+      const screenshotPath = `screenshot.png`;
+      await page.screenshot({ path: screenshotPath });
+      await browser.close();
+      
+      const imageSegment = segment.image(`file:///${screenshotPath}`);
+      await e.reply(imageSegment)
+    }
+       /** e.msg 用户的命令消息 */
+       async so_tyc(e) {
+        logger.info("[用户命令]", e.msg);
+      let msg = e.msg.replace("#天眼查=","").trim();
+      msg = msg.split(" ");
+        await e.reply(echo) //提示词
+      const browser = await puppeteer.launch({
+        headless: noie,
+        executablePath: chromeF,
+        //args: [`--proxy-server=${proxyUrl}`], 
+      });
+      const page = await browser.newPage();
+      await page.setViewport({ width: 1080, height: 3009 }); //截图大小（页面大小）
+      await page.goto('https://www.tianyancha.com/search?key='+msg , {waitUntil: 'networkidle2'});
       //await new Promise((r) => setTimeout(r, 50000));
       const screenshotPath = `screenshot.png`;
       await page.screenshot({ path: screenshotPath });
