@@ -349,7 +349,9 @@ export class example extends plugin {
         const browser = await puppeteer.launch({
           headless: noie,
           executablePath: chromeF,
-          args: ['--disable-web-security'], 
+          args: ['--disable-web-security',
+                `--proxy-server=${proxyUrl}`
+                ], 
         });
         const page = await browser.newPage();
         await page.setViewport({ width: 800, height: 2400 }); //截图大小（页面大小）
